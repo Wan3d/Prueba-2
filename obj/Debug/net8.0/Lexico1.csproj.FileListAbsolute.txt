@@ -1,0 +1,15 @@
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\bin\Debug\net8.0\Lexico1.exe
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\bin\Debug\net8.0\Lexico1.deps.json
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\bin\Debug\net8.0\Lexico1.runtimeconfig.json
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\bin\Debug\net8.0\Lexico1.dll
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\bin\Debug\net8.0\Lexico1.pdb
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\Lexico1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\Lexico1.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\Lexico1.AssemblyInfo.cs
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\Lexico1.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\Lexico1.sourcelink.json
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\Lexico1.dll
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\refint\Lexico1.dll
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\Lexico1.pdb
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\Lexico1.genruntimeconfig.cache
+C:\Users\HP\Desktop\IV - Semestre\Lenguajes y Automatas\UI\Lexico1\obj\Debug\net8.0\ref\Lexico1.dll
