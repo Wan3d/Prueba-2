@@ -89,13 +89,17 @@ namespace Lexico1
             {
             setClasificacion(Tipos.FinBloque);
             }
-               else if (c=='?')
+            else if (c=='?')
             {
             setClasificacion(Tipos.OperadorTernario);
             }
             else if (c=='+' || c=='-')
             {
             setClasificacion(Tipos.OperadorTermino);
+            }
+            else if (c=='*' || c=='/' || c=='%')
+            {
+            setClasificacion(Tipos.OperadorFactor);
             }
             else
             {
