@@ -20,17 +20,17 @@ namespace Lexico1
         public Lexico()
         {
             linea = 1;
-            log     = new StreamWriter("prueba.log");
-            asm     = new StreamWriter("prueba.asm");
-            log.AutoFlush=true;
-            asm.AutoFlush=true;
+            log = new StreamWriter("prueba.log");
+            asm = new StreamWriter("prueba.asm");
+            log.AutoFlush = true;
+            asm.AutoFlush = true;
             if (File.Exists("prueba.cpp"))
             {
                 archivo = new StreamReader("prueba.cpp");
             }
             else
             {
-                throw new Error("El archivo prueba.cpp no existe",log);
+                throw new Error("El archivo prueba.cpp no existe", log);
             }
         }
         /*
@@ -57,20 +57,56 @@ namespace Lexico1
             while (char.IsWhiteSpace(c = (char)archivo.Read()))
             {
             }
+            buffer += c;
             if (char.IsLetter(c))
             {
                 setClasificacion(Tipos.Identificador);
+                while (char.IsLetterOrDigit(c = (char)archivo.Peek()))
+                {
+                    buffer += c;
+                    archivo.Read();
+                }
             }
             else if (char.IsDigit(c))
             {
                 setClasificacion(Tipos.Numero);
+                while (char.IsDigit(c = (char)archivo.Peek()))
+                {
+                    buffer += c;
+                    archivo.Read();
+                }
+
+            }
+            else if (c == ';')
+            {
+                setClasificacion(Tipos.FinSentencia);
+            }
+            else if (c=='{')
+            {
+            setClasificacion(Tipos.InicioBloque);
+            }
+            else if (c=='}')
+            {
+            setClasificacion(Tipos.FinBloque);
+            }
+               else if (c=='?')
+            {
+            setClasificacion(Tipos.OperadorTernario);
+            }
+            else if (c=='+' || c=='-')
+            {
+            setClasificacion(Tipos.OperadorTermino);
             }
             else
             {
                 setClasificacion(Tipos.Caracter);
             }
             setContenido(buffer);
-            log.WriteLine(getContenido() + " = " + getClasificacion());            
-        } 
+            log.WriteLine(getContenido() + " = " + getClasificacion());
+        }
+        public bool finArchivo()
+        {
+            return archivo.EndOfStream;
+        }
     }
 }

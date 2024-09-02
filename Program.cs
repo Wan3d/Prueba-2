@@ -11,17 +11,12 @@ namespace Lexico1
         {
             try
             {
-                using (Lexico T = new Lexico())
+                using (Lexico l = new Lexico())
                 {
-                    T.setContenido("HOLA");
-                    T.setClasificacion(Token.Tipos.Identificador);
-
-                    Console.WriteLine(T.getContenido() + " = " + T.getClasificacion());
-
-                    T.setContenido("123");
-                    T.setClasificacion(Token.Tipos.Numero);
-
-                    Console.WriteLine(T.getContenido() + " = " + T.getClasificacion());
+                    while (!l.finArchivo())
+                    {
+                        l.nextToken();
+                    }
                 }
             }
             catch (Exception e)
