@@ -17,6 +17,7 @@ namespace Lexico1
                     {
                         l.nextToken();
                     }
+                    l.contadorLineas();
                 }
             }
             catch (Exception e)

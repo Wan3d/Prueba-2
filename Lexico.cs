@@ -6,7 +6,8 @@ using System.IO;
 
 /*
     Requerimiento 1: Sobrecargar el constructor Lexico para que reciba como
-                     argumento el nombre del archvo a compilar
+                     argumento el nombre del archvo a compilar (Generar un segundo constructor que reciba como parametro el archivo que quiero compilar y crear los dos archivos .asm y .log)
+                     (Googlear "Como obtener la extension de un archivo. WithoutExtension")
     Requerimiento 2: Tener un contador de lineas    (DONE)
     Requerimiento 3: Agregar OperadorRelacional:
                      ==,>,>=,<,<=,<>,!=           (DONE)
@@ -17,10 +18,11 @@ namespace Lexico1
 {
     public class Lexico : Token, IDisposable
     {
-        StreamReader archivo;
+        StreamReader archivo, archivo2;
         StreamWriter log;
         StreamWriter asm;
         int linea = 0;
+
         public Lexico()
         {
             log = new StreamWriter("prueba.log");
@@ -35,16 +37,41 @@ namespace Lexico1
             {
                 throw new Error("El archivo prueba.cpp no existe", log);
             }
+            if (File.Exists("Lexico.cs"))
+            {
+                archivo2 = new StreamReader("Lexico.cs");
+            }
+            else
+            {
+                throw new Error("El archivo Lexico.cs no existe", log);
+            }
         }
-        /*
-        public Lexico(string nombre)
+
+        /*public Lexico2(string nombre)
         {
-                Si nombre = suma.cpp
-                LOG = suma.log
-                ASM = suma.asm
+                nombre = "prueba.cpp";
+                log = new StreamWriter("suma.log");
+                asm = new StreamWriter("suma.asm");
                 Y validar la extension del nombre del archivo
         }
         */
+        public void contadorLineas()
+        {
+            using (StreamReader archivo2 = new StreamReader("Lexico.cs"))
+            {
+                char c;
+                linea = 1;
+                while (!archivo2.EndOfStream)  /* Lee el archivo mientras no se cierre*/
+                {
+                    c = (char)archivo2.Read();      /* Lee caracter por caracter */
+                    if (c == '\n')                  /* Si reconoce un salto de linea, se suma al contador*/
+                    {
+                        linea++;
+                    }
+                }
+            }
+            /* Console.WriteLine("Número de líneas: "+ linea); */
+        }
         public void Dispose()
         {
             archivo.Close();
@@ -55,13 +82,8 @@ namespace Lexico1
         {
             char c;
             string buffer = "";
-
             while (char.IsWhiteSpace(c = (char)archivo.Read()))
             {
-                {
-                    if (c == '\n')
-                        linea++;
-                }
             }
             buffer += c;
             if (char.IsLetter(c))
@@ -144,6 +166,18 @@ namespace Lexico1
 
             }
 
+            else if (c == '$')
+            {
+                setClasificacion(Tipos.Caracter);
+                while (char.IsDigit(c = (char)archivo.Peek()))
+                {
+                    setClasificacion(Tipos.Moneda);
+                    buffer += c;
+                    archivo.Read();
+                }
+
+            }
+
             else if (c == '&')
             {
                 setClasificacion(Tipos.Caracter);
@@ -205,7 +239,6 @@ namespace Lexico1
             else
             {
                 setClasificacion(Tipos.Caracter);
-                Console.WriteLine("" + linea);
             }
             if (!finArchivo())
             {
@@ -217,5 +250,6 @@ namespace Lexico1
         {
             return archivo.EndOfStream;
         }
+
     }
 }

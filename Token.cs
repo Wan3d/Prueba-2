@@ -14,7 +14,7 @@ namespace Lexico1
             OperadorTermino, OperadorFactor, IncrementoTermino,
             IncrementoFactor, Puntero, Asignacion,
             OperadorRelacional, OperadorLogico, MayorQue,
-            MenorQue, Negacion, DiferenteQue
+            MenorQue, Negacion, DiferenteQue, Moneda
         }
         private string contenido;
         private Tipos clasificacion;
