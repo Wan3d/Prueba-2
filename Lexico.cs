@@ -7,7 +7,7 @@ using System.IO;
 /*
     Requerimiento 1: Sobrecargar el constructor Lexico para que reciba como
                      argumento el nombre del archvo a compilar (Generar un segundo constructor que reciba como parametro el archivo que quiero compilar y crear los dos archivos .asm y .log)
-                     (Googlear "Como obtener la extension de un archivo. WithoutExtension")
+                     (Googlear "Como obtener la extension de un archivo. WithoutExtension") (DONE)
     Requerimiento 2: Tener un contador de lineas    (DONE)
     Requerimiento 3: Agregar OperadorRelacional:
                      ==,>,>=,<,<=,<>,!=           (DONE)
@@ -50,16 +50,18 @@ namespace Lexico1
         public Lexico(string nombreArchivo)
         {
             string nombreArchivoWithoutExt = Path.GetFileNameWithoutExtension(nombreArchivo);   /* Obtenemos el nombre del archivo sin la extensión para poder crear el .log y .asm */
-                if (File.Exists(nombreArchivo))
-                {
+            if (File.Exists(nombreArchivo))
+            {
                 log = new StreamWriter(nombreArchivoWithoutExt + ".log");
                 asm = new StreamWriter(nombreArchivoWithoutExt + ".asm");
-                }
-                else{
-                throw new FileNotFoundException("El archivo " + nombreArchivo + " no existe");    /* Creo una excepción que indique que el archivo no existe en caso de no encontrarlos */
-                }                
+                archivo = new StreamReader(nombreArchivo);
+            }
+            else
+            {
+                throw new FileNotFoundException("El archivo " + nombreArchivo + " no existe");    /* Defino una excepción que indica que existe un error con el archivo en caso de no ser encontrado */
+            }
         }
-        
+
         public void contadorLineas()
         {
             using (StreamReader archivo2 = new StreamReader("Lexico.cs"))
@@ -80,6 +82,7 @@ namespace Lexico1
         }
         public void Dispose()
         {
+            archivo2.Close();
             archivo.Close();
             log.Close();
             asm.Close();

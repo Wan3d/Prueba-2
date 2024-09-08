@@ -3,5 +3,15 @@ $ = Caracter
 >= = OperadorRelacional
 > = MayorQue
 $1234 = Moneda
+123123 = Numero
+12 = Numero
+> = MayorQue
+0 = Numero
+! = OperadorLogico
+$2 = Moneda
+. = Caracter
+. = Caracter
+. = Caracter
+112 = Numero
 
-Número de líneas del archivo Lexico.cs = 262
+Número de líneas del archivo Lexico.cs = 278
