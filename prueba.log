@@ -3,3 +3,5 @@ $ = Caracter
 >= = OperadorRelacional
 > = MayorQue
 $1234 = Moneda
+
+Número de líneas del archivo Lexico.cs = 262

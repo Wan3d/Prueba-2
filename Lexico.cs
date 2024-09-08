@@ -47,14 +47,19 @@ namespace Lexico1
             }
         }
 
-        /*public Lexico2(string nombre)
+        public Lexico(string nombreArchivo)
         {
-                nombre = "prueba.cpp";
-                log = new StreamWriter("suma.log");
-                asm = new StreamWriter("suma.asm");
-                Y validar la extension del nombre del archivo
+            string nombreArchivoWithoutExt = Path.GetFileNameWithoutExtension(nombreArchivo);   /* Obtenemos el nombre del archivo sin la extensión para poder crear el .log y .asm */
+                if (File.Exists(nombreArchivo))
+                {
+                log = new StreamWriter(nombreArchivoWithoutExt + ".log");
+                asm = new StreamWriter(nombreArchivoWithoutExt + ".asm");
+                }
+                else{
+                throw new FileNotFoundException("El archivo " + nombreArchivo + " no existe");    /* Creo una excepción que indique que el archivo no existe en caso de no encontrarlos */
+                }                
         }
-        */
+        
         public void contadorLineas()
         {
             using (StreamReader archivo2 = new StreamReader("Lexico.cs"))
@@ -70,7 +75,8 @@ namespace Lexico1
                     }
                 }
             }
-            /* Console.WriteLine("Número de líneas: "+ linea); */
+            /* Console.WriteLine("Número de líneas: " + linea); */
+            log.WriteLine("\nNúmero de líneas del archivo Lexico.cs = " + linea);
         }
         public void Dispose()
         {

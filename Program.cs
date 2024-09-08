@@ -11,13 +11,13 @@ namespace Lexico1
         {
             try
             {
-                using (Lexico l = new Lexico())
+                using (Lexico lexico = new Lexico("suma.cpp"))
                 {
-                    while (!l.finArchivo())
+                    while (!lexico.finArchivo())
                     {
-                        l.nextToken();
+                        lexico.nextToken();
                     }
-                    l.contadorLineas();
+                    lexico.contadorLineas();
                 }
             }
             catch (Exception e)
