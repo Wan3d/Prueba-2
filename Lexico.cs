@@ -75,10 +75,10 @@ namespace Lexico1
             {
                 char c;
                 linea = 1;
-                while (!archivo2.EndOfStream)       /* Lee el archivo mientras no se cierre*/
+                while (!archivo2.EndOfStream)       /* Lee el archivo mientras no se cierre */
                 {
                     c = (char)archivo2.Read();      /* Lee caracter por caracter */
-                    if (c == '\n')                  /* Si reconoce un salto de linea, se suma al contador*/
+                    if (c == '\n')                  /* Si reconoce un salto de linea, se suma al contador */
                     {
                         linea++;
                     }
@@ -90,7 +90,10 @@ namespace Lexico1
         public void Dispose()
         {
             contadorLineas();
-            archivo2.Close();
+            if (archivo2 != null)           /* Utilizo esta línea para verificar que el objeto archivo haya sido abierto, y si fue abierto, que lo cierre. En cambio, si no fue abierto, que omita la llamada de Close() */
+            {                               /* Esto lo hago debido a una excepción que me dice que el objeto no tiene referencia */
+                archivo2.Close();
+            }
             archivo.Close();
             log.Close();
             asm.Close();

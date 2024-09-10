@@ -1,3 +1,33 @@
 { = InicioBloque
+&& = OperadorLogico
+& = OperadorLogico
+|| = OperadorLogico
+| = OperadorLogico
+! = OperadorLogico
+!= = OperadorRelacional
+== = OperadorRelacional
+< = OperadorRelacional
+< = OperadorRelacional
+<> = OperadorRelacional
+> = OperadorRelacional
+> = OperadorRelacional
+} = FinBloque
+$ = Caracter
+$1231234 = Moneda
+$1 = Moneda
+$ = Caracter
+$ = Caracter
+asdasda = Identificador
+> = OperadorRelacional
+> = OperadorRelacional
+< = OperadorRelacional
+< = OperadorRelacional
+< = OperadorRelacional
+" = Caracter
+! = OperadorLogico
+" = Caracter
+!= = OperadorRelacional
+asdasd = Identificador
+asdasasd = Identificador
 
 Número de líneas del archivo prueba.cpp = 10
