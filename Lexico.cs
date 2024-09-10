@@ -50,25 +50,32 @@ namespace Lexico1
         public Lexico(string nombreArchivo)
         {
             string nombreArchivoWithoutExt = Path.GetFileNameWithoutExtension(nombreArchivo);   /* Obtenemos el nombre del archivo sin la extensión para poder crear el .log y .asm */
+
             if (File.Exists(nombreArchivo))
             {
                 log = new StreamWriter(nombreArchivoWithoutExt + ".log");
                 asm = new StreamWriter(nombreArchivoWithoutExt + ".asm");
+                log.AutoFlush = true;
+                asm.AutoFlush = true;
                 archivo = new StreamReader(nombreArchivo);
+            }
+            else if (Path.GetExtension(nombreArchivo) != ".cpp")
+            {
+                throw new ArgumentException("El archivo debe ser de extensión .cpp");
             }
             else
             {
-                throw new FileNotFoundException("El archivo " + nombreArchivo + " no existe");    /* Defino una excepción que indica que existe un error con el archivo en caso de no ser encontrado */
+                throw new FileNotFoundException("La extensión " + Path.GetExtension(nombreArchivo) + " no existe");    /* Defino una excepción que indica que existe un error con el archivo en caso de no ser encontrado */
             }
         }
 
         public void contadorLineas()
         {
-            using (StreamReader archivo2 = new StreamReader("Lexico.cs"))
+            using (StreamReader archivo2 = new StreamReader("prueba.cpp"))
             {
                 char c;
                 linea = 1;
-                while (!archivo2.EndOfStream)  /* Lee el archivo mientras no se cierre*/
+                while (!archivo2.EndOfStream)       /* Lee el archivo mientras no se cierre*/
                 {
                     c = (char)archivo2.Read();      /* Lee caracter por caracter */
                     if (c == '\n')                  /* Si reconoce un salto de linea, se suma al contador*/
@@ -76,12 +83,13 @@ namespace Lexico1
                         linea++;
                     }
                 }
+                log.WriteLine("\nNúmero de líneas del archivo prueba.cpp = " + linea);
+
             }
-            /* Console.WriteLine("Número de líneas: " + linea); */
-            log.WriteLine("\nNúmero de líneas del archivo Lexico.cs = " + linea);
         }
         public void Dispose()
         {
+            contadorLineas();
             archivo2.Close();
             archivo.Close();
             log.Close();
@@ -143,7 +151,7 @@ namespace Lexico1
             }
             else if (c == '>')
             {
-                setClasificacion(Tipos.MayorQue);
+                setClasificacion(Tipos.OperadorRelacional);
                 if ((c = (char)archivo.Peek()) == '=')
                 {
                     setClasificacion(Tipos.OperadorRelacional);
@@ -154,7 +162,7 @@ namespace Lexico1
             }
             else if (c == '<')
             {
-                setClasificacion(Tipos.MenorQue);
+                setClasificacion(Tipos.OperadorRelacional);
                 if ((c = (char)archivo.Peek()) == '=' || c == '>')
                 {
                     setClasificacion(Tipos.OperadorRelacional);
@@ -189,7 +197,7 @@ namespace Lexico1
 
             else if (c == '&')
             {
-                setClasificacion(Tipos.Caracter);
+                setClasificacion(Tipos.OperadorLogico);
                 if ((c = (char)archivo.Peek()) == '&')
                 {
                     setClasificacion(Tipos.OperadorLogico);
@@ -200,7 +208,7 @@ namespace Lexico1
             }
             else if (c == '|')
             {
-                setClasificacion(Tipos.Caracter);
+                setClasificacion(Tipos.OperadorLogico);
                 if ((c = (char)archivo.Peek()) == '|')
                 {
                     setClasificacion(Tipos.OperadorLogico);

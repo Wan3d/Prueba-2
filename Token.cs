@@ -9,12 +9,11 @@ namespace Lexico1
     {
         public enum Tipos
         {
-            Identificador,Numero,Caracter,FinSentencia,
+            Identificador, Numero, Caracter, FinSentencia,
             InicioBloque, FinBloque, OperadorTernario,
             OperadorTermino, OperadorFactor, IncrementoTermino,
             IncrementoFactor, Puntero, Asignacion,
-            OperadorRelacional, OperadorLogico, MayorQue,
-            MenorQue, Negacion, DiferenteQue, Moneda
+            OperadorRelacional, OperadorLogico, Moneda
         }
         private string contenido;
         private Tipos clasificacion;

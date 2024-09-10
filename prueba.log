@@ -1,17 +1,3 @@
-$ = Caracter
-$ = Caracter
->= = OperadorRelacional
-> = MayorQue
-$1234 = Moneda
-123123 = Numero
-12 = Numero
-> = MayorQue
-0 = Numero
-! = OperadorLogico
-$2 = Moneda
-. = Caracter
-. = Caracter
-. = Caracter
-112 = Numero
+{ = InicioBloque
 
-Número de líneas del archivo Lexico.cs = 278
+Número de líneas del archivo prueba.cpp = 10
