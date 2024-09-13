@@ -1,2 +1,16 @@
+{ = InicioBloque
+&& = OperadorLogico
+& = OperadorLogico
+|| = OperadorLogico
+| = OperadorLogico
+! = OperadorLogico
+!= = OperadorRelacional
+== = OperadorRelacional
+< = OperadorRelacional
+< = OperadorRelacional
+<> = OperadorRelacional
+> = OperadorRelacional
+> = OperadorRelacional
+} = FinBloque
 
-Número de líneas del archivo prueba.cpp = 10
+Número de líneas del archivo = 11

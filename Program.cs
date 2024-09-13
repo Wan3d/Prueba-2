@@ -11,7 +11,7 @@ namespace Lexico1
         {
             try
             {
-                using (Lexico lexico = new Lexico())
+                using (Lexico lexico = new Lexico("suma.cpp"))
                 {
                     while (!lexico.finArchivo())
                     {

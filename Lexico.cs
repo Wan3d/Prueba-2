@@ -50,7 +50,6 @@ namespace Lexico1
         public Lexico(string nombreArchivo)
         {
             string nombreArchivoWithoutExt = Path.GetFileNameWithoutExtension(nombreArchivo);   /* Obtenemos el nombre del archivo sin la extensión para poder crear el .log y .asm */
-
             if (File.Exists(nombreArchivo))
             {
                 log = new StreamWriter(nombreArchivoWithoutExt + ".log");
@@ -71,21 +70,18 @@ namespace Lexico1
 
         public void contadorLineas()
         {
-            using (StreamReader archivo2 = new StreamReader("prueba.cpp"))
+            archivo.BaseStream.Position = 0; /* Empezar el archivo desde la posición 0 */
+            char c;
+            linea = 1;
+            while (!archivo.EndOfStream)
             {
-                char c;
-                linea = 1;
-                while (!archivo2.EndOfStream)       /* Lee el archivo mientras no se cierre */
+                c = (char)archivo.Read();
+                if (c == '\n')
                 {
-                    c = (char)archivo2.Read();      /* Lee caracter por caracter */
-                    if (c == '\n')                  /* Si reconoce un salto de linea, se suma al contador */
-                    {
-                        linea++;
-                    }
+                    linea++;
                 }
-                log.WriteLine("\nNúmero de líneas del archivo prueba.cpp = " + linea);
-
             }
+            log.WriteLine("\nNúmero de líneas del archivo = " + linea);
         }
         public void Dispose()
         {
@@ -249,12 +245,6 @@ namespace Lexico1
             else if (c == '*' || c == '/' || c == '%')
             {
                 setClasificacion(Tipos.OperadorFactor);
-                if ((c = (char)archivo.Peek()) == '=')
-                {
-                    setClasificacion(Tipos.IncrementoFactor);
-                    buffer += c;
-                    archivo.Read();
-                }
             }
             else
             {
