@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
+    "C:\\Users\\zullo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\IV - Semestre\\Lenguajes y Automatas\\UI\\Lexico1\\Lexico1.csproj",
+      "projectUniqueName": "C:\\Users\\zullo\\OneDrive\\Escritorio\\IV - Semestre\\Lenguajes y Automatas\\UI\\Lexico1\\Lexico1.csproj",
       "projectName": "Lexico1",
-      "projectPath": "C:\\Users\\HP\\Desktop\\IV - Semestre\\Lenguajes y Automatas\\UI\\Lexico1\\Lexico1.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\IV - Semestre\\Lenguajes y Automatas\\UI\\Lexico1\\obj\\",
+      "projectPath": "C:\\Users\\zullo\\OneDrive\\Escritorio\\IV - Semestre\\Lenguajes y Automatas\\UI\\Lexico1\\Lexico1.csproj",
+      "packagesPath": "C:\\Users\\zullo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zullo\\OneDrive\\Escritorio\\IV - Semestre\\Lenguajes y Automatas\\UI\\Lexico1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\zullo\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

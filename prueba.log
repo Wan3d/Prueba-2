@@ -12,5 +12,7 @@
 > = OperadorRelacional
 > = OperadorRelacional
 } = FinBloque
+++ = IncrementoTermino
+++ = IncrementoTermino
 
 Número de líneas del archivo = 14
