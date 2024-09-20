@@ -17,6 +17,8 @@ namespace Lexico1
                     {
                         lexico.nextToken();
                     }
+                    lexico.log.WriteLine("\n-----------------------------------\n");
+                    lexico.log.WriteLine("Líneas del archivo: " + lexico.linea);
                 }
             }
             catch (Exception e)

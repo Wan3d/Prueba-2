@@ -1,8 +1,8 @@
 { = InicioBloque
 && = OperadorLogico
-& = OperadorLogico
+& = Caracter
 || = OperadorLogico
-| = OperadorLogico
+| = Caracter
 ! = OperadorLogico
 != = OperadorRelacional
 == = OperadorRelacional
@@ -12,5 +12,4 @@
 > = OperadorRelacional
 > = OperadorRelacional
 } = FinBloque
-
-Número de líneas del archivo = 11
+Líneas del archivo: 7

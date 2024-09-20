@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/HP/Desktop/IV - Semestre/Lenguajes y Automatas/UI/Lexico1",
-      "program": "c:/Users/HP/Desktop/IV - Semestre/Lenguajes y Automatas/UI/Lexico1/build/Debug/outDebug",
+      "cwd": "c:/Users/zullo/OneDrive/Escritorio/IV - Semestre/Lenguajes y Automatas/UI/Lexico1",
+      "program": "c:/Users/zullo/OneDrive/Escritorio/IV - Semestre/Lenguajes y Automatas/UI/Lexico1/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

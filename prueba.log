@@ -1,18 +1,4 @@
-{ = InicioBloque
-&& = OperadorLogico
-& = OperadorLogico
-|| = OperadorLogico
-| = OperadorLogico
-! = OperadorLogico
-!= = OperadorRelacional
-== = OperadorRelacional
-< = OperadorRelacional
-< = OperadorRelacional
-<> = OperadorRelacional
-> = OperadorRelacional
-> = OperadorRelacional
-} = FinBloque
-++ = IncrementoTermino
-++ = IncrementoTermino
-
-Número de líneas del archivo = 14
+"HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" = Cadena
+"A" = Cadena
+"B" = Cadena
+Error: 
