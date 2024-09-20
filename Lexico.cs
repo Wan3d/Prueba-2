@@ -12,6 +12,7 @@ namespace Lexico1
         public StreamReader archivo;
         public StreamWriter log;
         public StreamWriter asm;
+
         public int linea = 1;
 
         public Lexico()
@@ -63,7 +64,9 @@ namespace Lexico1
             while (char.IsWhiteSpace(c = (char)archivo.Read()))
             {
                 if (c == '\n')
+                {
                     linea++;
+                }
             }
             buffer += c;
             if (char.IsLetter(c))
@@ -75,32 +78,58 @@ namespace Lexico1
                     archivo.Read();
                 }
             }
+            /* Clasificaciones de números / U-II */
+            /* ---------------------------------------------- */
             else if (char.IsDigit(c))
             {
                 setClasificacion(Tipos.Numero);
-                while (char.IsDigit(c = (char)archivo.Peek()))
+                while (!finArchivo() && char.IsDigit(c = (char)archivo.Peek()))
                 {
                     buffer += c;
                     archivo.Read();
                 }
-            }
-            /* Agregando clasificaciones para el proyecto de la unidad II */
-            else if (c == '"')
-            {
-
-                    setClasificacion(Tipos.Cadena);
-                    while (!archivo.EndOfStream && (c = (char)archivo.Peek()) != '"')
+                if (!finArchivo() && (c = (char)archivo.Peek()) == '.')
+                {
+                    buffer += c;
+                    archivo.Read();
+                    if (finArchivo() || !char.IsDigit(c = (char)archivo.Peek()))
+                    {
+                        throw new Error("léxico", log, linea);
+                    }
+                    while (!finArchivo() && char.IsDigit(c = (char)archivo.Peek()))
                     {
                         buffer += c;
                         archivo.Read();
-                        if (archivo.EndOfStream)
+                        if (!finArchivo() && (char.ToLower(c) == 'e'))
                         {
-                        throw new Error("",log);
+                        buffer += c;
+                        archivo.Read();
+                        if (!finArchivo() && (c = (char)archivo.Peek()) == '-' || (c = (char)archivo.Peek()) == '+')
+                        {
+                        buffer += c;
+                        archivo.Read();
+                        }
                         }
                     }
+                }
+            }
+            /* ---------------------------------------------- */
+            /* Clasificaciones de cadena / U-II */
+            else if (c == '"')
+            {
+                setClasificacion(Tipos.Cadena);
+                while ((c = (char)archivo.Peek()) != '"')
+                {
                     buffer += c;
                     archivo.Read();
+                    if (archivo.EndOfStream)
+                    {
+                        throw new Error("léxico", log, linea);
+                    }
                 }
+                buffer += c;
+                archivo.Read();
+            }
             /* -------------------------------------------------------------- */
             else if (c == ';')
             {

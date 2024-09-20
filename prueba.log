@@ -1,4 +1,16 @@
 "HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" = Cadena
 "A" = Cadena
 "B" = Cadena
-Error: 
+a = Identificador
+b = Identificador
+2 = Numero
+"" = Cadena
+a = Identificador
+"" = Cadena
+52.232423 = Numero
+523424.2 = Numero
+5.23 = Numero
+69.69 = Numero
+69 = Numero
+70.2 = Numero
+Error: léxico en la linea [24]

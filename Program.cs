@@ -21,9 +21,9 @@ namespace Lexico1
                     lexico.log.WriteLine("Líneas del archivo: " + lexico.linea);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine("Error: " + e.Message);
+               /* Console.WriteLine("Error: " + e.Message); */
             }
         }
     }
