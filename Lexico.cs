@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 
 namespace Lexico1
 {
@@ -135,14 +136,10 @@ namespace Lexico1
                 archivo.Read();
             }
             /* Clasificaciones carácter */
-            else if (c == '\'')
+            else if (c == '\'') /* DONE */
             {
                 setClasificacion(Tipos.Caracter);
                 if ((c = (char)archivo.Peek()) == '\'')
-                {
-                    throw new Error("léxico", log, linea);
-                }
-                else if (char.IsLetterOrDigit(c))
                 {
                     buffer += c;
                     archivo.Read();
@@ -151,7 +148,25 @@ namespace Lexico1
                         buffer += c;
                         archivo.Read();
                     }
-                    else
+                    else if ((c = (char)archivo.Peek()) != '\'')
+                    {
+                        throw new Error("léxico", log, linea);
+                    }
+                }
+                else if (char.IsWhiteSpace(c = (char)archivo.Peek()))
+                {
+                    throw new Error("léxico", log, linea);
+                }
+                else if (char.IsLetterOrDigit(c = (char)archivo.Peek()))
+                {
+                    buffer += c;
+                    archivo.Read();
+                    if ((c = (char)archivo.Peek()) == '\'')
+                    {
+                        buffer += c;
+                        archivo.Read();
+                    }
+                    else if ((c = (char)archivo.Peek()) != '\'')
                     {
                         throw new Error("léxico", log, linea);
                     }

@@ -1,5 +1,7 @@
-"Hola" = Cadena
-"ITQ" = Cadena
-"            " = Cadena
-"" = Cadena
-Error: léxico en la linea {7}
+''' = Caracter
+''' = Caracter
+''' = Caracter
+
+-----------------------------------
+
+Líneas del archivo: 4
