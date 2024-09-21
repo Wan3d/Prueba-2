@@ -102,13 +102,13 @@ namespace Lexico1
                         archivo.Read();
                         if (!finArchivo() && (char.ToLower(c) == 'e'))
                         {
-                        buffer += c;
-                        archivo.Read();
-                        if (!finArchivo() && (c = (char)archivo.Peek()) == '-' || (c = (char)archivo.Peek()) == '+')
-                        {
-                        buffer += c;
-                        archivo.Read();
-                        }
+                            buffer += c;
+                            archivo.Read();
+                            if (!finArchivo() && (c = (char)archivo.Peek()) == '-' || (c = (char)archivo.Peek()) == '+')
+                            {
+                                buffer += c;
+                                archivo.Read();
+                            }
                         }
                     }
                 }
@@ -118,17 +118,53 @@ namespace Lexico1
             else if (c == '"')
             {
                 setClasificacion(Tipos.Cadena);
-                while ((c = (char)archivo.Peek()) != '"')
+                while ((c = (char)archivo.Peek()) != '"' && (c = (char)archivo.Peek()) != '\n')
                 {
                     buffer += c;
                     archivo.Read();
-                    if (archivo.EndOfStream)
+                    /* if (archivo.EndOfStream)
+                    {
+                        throw new Error("a", log, linea);
+                    } Lanza una excepción si llega al final de archivo sin leer ninguna comilla doble */
+                    if ((c = (char)archivo.Peek()) == '\n')
+                    {
+                        throw new Error("léxico", log, linea);
+                    } /* Lanza una excepción si llega al final de la línea sin leer ninguna comilla doble */
+                }
+                buffer += c;
+                archivo.Read();
+            }
+            /* Clasificaciones carácter */
+            else if (c == '\'')
+            {
+                setClasificacion(Tipos.Caracter);
+                if ((c = (char)archivo.Peek()) == '\'')
+                {
+                    throw new Error("léxico", log, linea);
+                }
+                else if (char.IsLetterOrDigit(c))
+                {
+                    buffer += c;
+                    archivo.Read();
+                    if ((c = (char)archivo.Peek()) == '\'')
+                    {
+                        buffer += c;
+                        archivo.Read();
+                    }
+                    else
                     {
                         throw new Error("léxico", log, linea);
                     }
                 }
-                buffer += c;
-                archivo.Read();
+            }
+            else if (c == '#')
+            {
+                setClasificacion(Tipos.Caracter);
+                while (char.IsDigit(c = (char)archivo.Peek()))
+                {
+                    buffer += c;
+                    archivo.Read();
+                }
             }
             /* -------------------------------------------------------------- */
             else if (c == ';')
