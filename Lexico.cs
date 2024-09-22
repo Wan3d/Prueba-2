@@ -84,31 +84,81 @@ namespace Lexico1
             else if (char.IsDigit(c))
             {
                 setClasificacion(Tipos.Numero);
-                while (!finArchivo() && char.IsDigit(c = (char)archivo.Peek()))
+                if ((c = (char)archivo.Peek()) == '.')
                 {
                     buffer += c;
                     archivo.Read();
-                }
-                if (!finArchivo() && (c = (char)archivo.Peek()) == '.')
-                {
-                    buffer += c;
-                    archivo.Read();
-                    if (finArchivo() || !char.IsDigit(c = (char)archivo.Peek()))
+                    if (!char.IsDigit(c = (char)archivo.Peek()))
                     {
                         throw new Error("léxico", log, linea);
                     }
-                    while (!finArchivo() && char.IsDigit(c = (char)archivo.Peek()))
+                    while (char.IsDigit(c = (char)archivo.Peek()))
                     {
                         buffer += c;
                         archivo.Read();
-                        if (!finArchivo() && (char.ToLower(c) == 'e'))
+                    }
+                    if ((c = (char)archivo.Peek()) == 'e' || (c = (char)archivo.Peek()) == 'E')
+                    {
+                        buffer += c;
+                        archivo.Read();
+                        if ((c = (char)archivo.Peek()) == '-' || (c = (char)archivo.Peek()) == '+' || (char.IsDigit(c = (char)archivo.Peek())))
                         {
                             buffer += c;
                             archivo.Read();
-                            if (!finArchivo() && (c = (char)archivo.Peek()) == '-' || (c = (char)archivo.Peek()) == '+')
+                            if ((c = (char)archivo.Peek()) == '-' || (c = (char)archivo.Peek()) == '+' || (c = (char)archivo.Peek()) == 'e' || (c = (char)archivo.Peek()) == 'E')
+                            {
+                                throw new Error("léxico", log, linea);
+                            }
+                            while (char.IsDigit(c = (char)archivo.Peek()))
                             {
                                 buffer += c;
                                 archivo.Read();
+                            }
+                        }
+                        else
+                        {
+                            throw new Error("léxico", log, linea);
+                        }
+                    }
+                }
+                while (char.IsDigit(c = (char)archivo.Peek()))
+                {
+                    buffer += c;
+                    archivo.Read();
+                    if ((c = (char)archivo.Peek()) == '.')
+                    {
+                        buffer += c;
+                        archivo.Read();
+                        if (!char.IsDigit(c = (char)archivo.Peek()))
+                        {
+                            throw new Error("léxico", log, linea);
+                        }
+                        while (char.IsDigit(c = (char)archivo.Peek()))
+                        {
+                            buffer += c;
+                            archivo.Read();
+                        }
+                        if ((c = (char)archivo.Peek()) == 'e' || (c = (char)archivo.Peek()) == 'E')
+                        {
+                            buffer += c;
+                            archivo.Read();
+                            if ((c = (char)archivo.Peek()) == '-' || (c = (char)archivo.Peek()) == '+' || (char.IsDigit(c = (char)archivo.Peek())))
+                            {
+                                buffer += c;
+                                archivo.Read();
+                                if ((c = (char)archivo.Peek()) == '-' || (c = (char)archivo.Peek()) == '+' || (c = (char)archivo.Peek()) == 'e' || (c = (char)archivo.Peek()) == 'E')
+                                {
+                                    throw new Error("léxico", log, linea);
+                                }
+                                while (char.IsDigit(c = (char)archivo.Peek()))
+                                {
+                                    buffer += c;
+                                    archivo.Read();
+                                }
+                            }
+                            else
+                            {
+                                throw new Error("léxico", log, linea);
                             }
                         }
                     }
@@ -123,10 +173,6 @@ namespace Lexico1
                 {
                     buffer += c;
                     archivo.Read();
-                    /* if (archivo.EndOfStream)
-                    {
-                        throw new Error("a", log, linea);
-                    } Lanza una excepción si llega al final de archivo sin leer ninguna comilla doble */
                     if ((c = (char)archivo.Peek()) == '\n')
                     {
                         throw new Error("léxico", log, linea);
@@ -158,6 +204,20 @@ namespace Lexico1
                     throw new Error("léxico", log, linea);
                 }
                 else if (char.IsLetterOrDigit(c = (char)archivo.Peek()))
+                {
+                    buffer += c;
+                    archivo.Read();
+                    if ((c = (char)archivo.Peek()) == '\'')
+                    {
+                        buffer += c;
+                        archivo.Read();
+                    }
+                    else if ((c = (char)archivo.Peek()) != '\'')
+                    {
+                        throw new Error("léxico", log, linea);
+                    }
+                }
+                else if ((c = (char)archivo.Peek()) == '@')
                 {
                     buffer += c;
                     archivo.Read();

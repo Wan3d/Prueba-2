@@ -1,7 +1,16 @@
-''' = Caracter
-''' = Caracter
-''' = Caracter
+'@' = Caracter
+4 = Numero
+526 = Numero
+526.18 = Numero
+527.23E-234 = Numero
+527.32E+4324 = Numero
+423.21E23 = Numero
+5.23E+32 = Numero
+5.23E-23 = Numero
+5.23E23 = Numero
+5.23E2 = Numero
+432.2e2 = Numero
 
 -----------------------------------
 
-Líneas del archivo: 4
+Líneas del archivo: 24
