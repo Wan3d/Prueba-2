@@ -233,7 +233,7 @@ namespace Lexico1
                 archivo.Read();
             }
             /* Clasificaciones carácter */
-            else if (c == '\'') /* DONE */
+            else if (c == '\'') 
             {
                 setClasificacion(Tipos.Caracter);
                 if ((c = (char)archivo.Peek()) == '\'')
