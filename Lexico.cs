@@ -232,7 +232,8 @@ namespace Lexico1
                 buffer += c;
                 archivo.Read();
             }
-            /* Clasificaciones carácter */
+            /* ---------------------------------------------- */
+            /* Clasificaciones de carácter / U-II */
             else if (c == '\'') 
             {
                 setClasificacion(Tipos.Caracter);
@@ -292,7 +293,7 @@ namespace Lexico1
                     archivo.Read();
                 }
             }
-            /* -------------------------------------------------------------- */
+            /* ---------------------------------------------- */
             else if (c == ';')
             {
                 setClasificacion(Tipos.FinSentencia);
