@@ -1,16 +1,19 @@
+230 = Numero
+230.30 = Numero
+2.32e+2 = Numero
+2.3e2 = Numero
+2.3e-2 = Numero
+230e30 = Numero
+230e-30 = Numero
+230e+30 = Numero
+230.30e30 = Numero
+230.30e-30 = Numero
+230.30e+30 = Numero
+"hola mundo" = Cadena
+# = Caracter
+#64 = Caracter
 '@' = Caracter
-4 = Numero
-526 = Numero
-526.18 = Numero
-527.23E-234 = Numero
-527.32E+4324 = Numero
-423.21E23 = Numero
-5.23E+32 = Numero
-5.23E-23 = Numero
-5.23E23 = Numero
-5.23E2 = Numero
-432.2e2 = Numero
 
 -----------------------------------
 
-Líneas del archivo: 24
+Líneas del archivo: 16
