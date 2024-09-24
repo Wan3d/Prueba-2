@@ -224,7 +224,7 @@ namespace Lexico1
                 {
                     buffer += c;
                     archivo.Read();
-                    if ((c = (char)archivo.Peek()) == '\n')
+                    if ((c = (char)archivo.Peek()) == '\n' && (c = (char)archivo.Peek()) != '"' || archivo.EndOfStream)
                     {
                         throw new Error("léxico", log, linea);
                     } /* Lanza una excepción si llega al final de la línea sin leer ninguna comilla doble */
@@ -234,55 +234,28 @@ namespace Lexico1
             }
             /* ---------------------------------------------- */
             /* Clasificaciones de carácter / U-II */
-            else if (c == '\'') 
+            else if (c == '\'')
             {
                 setClasificacion(Tipos.Caracter);
-                if ((c = (char)archivo.Peek()) == '\'')
+                if (char.IsLetterOrDigit(c = (char)archivo.Peek()) || char.IsWhiteSpace(c = (char)archivo.Peek()) || char.IsSymbol(c = (char)archivo.Peek()) || char.IsPunctuation(c = (char)archivo.Peek()))
                 {
                     buffer += c;
                     archivo.Read();
-                    if ((c = (char)archivo.Peek()) == '\'')
-                    {
-                        buffer += c;
-                        archivo.Read();
-                    }
-                    else if ((c = (char)archivo.Peek()) != '\'')
+                    if ((c = (char)archivo.Peek()) != '\'')
                     {
                         throw new Error("léxico", log, linea);
                     }
+                    else if ((c = (char)archivo.Peek()) == '\'')
+                    {
+                    buffer += c;
+                    archivo.Read();
+                    }
                 }
-                else if (char.IsWhiteSpace(c = (char)archivo.Peek()))
+                else
                 {
                     throw new Error("léxico", log, linea);
                 }
-                else if (char.IsLetterOrDigit(c = (char)archivo.Peek()))
-                {
-                    buffer += c;
-                    archivo.Read();
-                    if ((c = (char)archivo.Peek()) == '\'')
-                    {
-                        buffer += c;
-                        archivo.Read();
-                    }
-                    else if ((c = (char)archivo.Peek()) != '\'')
-                    {
-                        throw new Error("léxico", log, linea);
-                    }
-                }
-                else if ((c = (char)archivo.Peek()) == '@')
-                {
-                    buffer += c;
-                    archivo.Read();
-                    if ((c = (char)archivo.Peek()) == '\'')
-                    {
-                        buffer += c;
-                        archivo.Read();
-                    }
-                    else if ((c = (char)archivo.Peek()) != '\'')
-                    {
-                        throw new Error("léxico", log, linea);
-                    }
-                }
+
             }
             else if (c == '#')
             {
