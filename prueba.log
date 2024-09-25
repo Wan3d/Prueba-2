@@ -12,9 +12,9 @@
 "hola mundo" = Cadena
 # = Caracter
 #64 = Caracter
+123.123 = Numero
 'A' = Caracter
-'6' = Caracter
-' ' = Caracter
-'@' = Caracter
-''' = Caracter
-Error: léxico en la linea {20}
+
+-----------------------------------
+
+Líneas del archivo: 17

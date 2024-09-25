@@ -90,7 +90,7 @@ namespace Lexico1
                     archivo.Read();
                     if (!char.IsDigit(c = (char)archivo.Peek()))
                     {
-                        throw new Error("léxico", log, linea);
+                        throw new Error("léxico (se esperaba un dígito)", log, linea);
                     }
                     while (char.IsDigit(c = (char)archivo.Peek()))
                     {
@@ -107,7 +107,7 @@ namespace Lexico1
                             archivo.Read();
                             if (!char.IsDigit(c = (char)archivo.Peek()))
                             {
-                                throw new Error("léxico", log, linea);
+                                throw new Error("léxico (se esperaba un dígito)", log, linea);
                             }
                             while (char.IsDigit(c = (char)archivo.Peek()))
                             {
@@ -125,12 +125,12 @@ namespace Lexico1
                         }
                         else
                         {
-                            throw new Error("léxico", log, linea);
+                            throw new Error("léxico (cáracter inválido)", log, linea);
                         }
                     }
                     else
                     {
-                        throw new Error("léxico", log, linea);
+                        throw new Error("léxico (cáracter inválido)", log, linea);
                     }
                 }
                 while (char.IsDigit(c = (char)archivo.Peek()))
@@ -147,7 +147,7 @@ namespace Lexico1
                             archivo.Read();
                             if (!char.IsDigit(c = (char)archivo.Peek()))
                             {
-                                throw new Error("léxico", log, linea);
+                                throw new Error("léxico (se esperaba un dígito)", log, linea);
                             }
                             while (char.IsDigit(c = (char)archivo.Peek()))
                             {
@@ -165,7 +165,7 @@ namespace Lexico1
                         }
                         else
                         {
-                            throw new Error("léxico", log, linea);
+                            throw new Error("léxico (cáracter inválido)", log, linea);
                         }
                     }
                     if ((c = (char)archivo.Peek()) == '.')
@@ -174,7 +174,7 @@ namespace Lexico1
                         archivo.Read();
                         if (!char.IsDigit(c = (char)archivo.Peek()))
                         {
-                            throw new Error("léxico", log, linea);
+                            throw new Error("léxico (se esperaba un dígito)", log, linea);
                         }
                         while (char.IsDigit(c = (char)archivo.Peek()))
                         {
@@ -191,7 +191,7 @@ namespace Lexico1
                                 archivo.Read();
                                 if (!char.IsDigit(c = (char)archivo.Peek()))
                                 {
-                                    throw new Error("léxico", log, linea);
+                                    throw new Error("léxico (se esperaba un dígito)", log, linea);
                                 }
                                 while (char.IsDigit(c = (char)archivo.Peek()))
                                 {
@@ -209,7 +209,7 @@ namespace Lexico1
                             }
                             else
                             {
-                                throw new Error("léxico", log, linea);
+                                throw new Error("léxico (cáracter inválido)", log, linea);
                             }
                         }
                     }
@@ -226,7 +226,7 @@ namespace Lexico1
                     archivo.Read();
                     if ((c = (char)archivo.Peek()) == '\n' && (c = (char)archivo.Peek()) != '"' || archivo.EndOfStream)
                     {
-                        throw new Error("léxico", log, linea);
+                        throw new Error("léxico (no se cerró la cadena)", log, linea);
                     } /* Lanza una excepción si llega al final de la línea sin leer ninguna comilla doble */
                 }
                 buffer += c;
@@ -237,25 +237,18 @@ namespace Lexico1
             else if (c == '\'')
             {
                 setClasificacion(Tipos.Caracter);
-                if (char.IsLetterOrDigit(c = (char)archivo.Peek()) || char.IsWhiteSpace(c = (char)archivo.Peek()) || char.IsSymbol(c = (char)archivo.Peek()) || char.IsPunctuation(c = (char)archivo.Peek()))
+                c = (char)archivo.Peek();
+                buffer += c;
+                archivo.Read();
+                if ((c = (char)archivo.Peek()) == '\'')
                 {
                     buffer += c;
                     archivo.Read();
-                    if ((c = (char)archivo.Peek()) != '\'')
-                    {
-                        throw new Error("léxico", log, linea);
-                    }
-                    else if ((c = (char)archivo.Peek()) == '\'')
-                    {
-                    buffer += c;
-                    archivo.Read();
-                    }
                 }
                 else
                 {
-                    throw new Error("léxico", log, linea);
+                    throw new Error("léxico (no se encontró el cierre de la comilla simple)", log, linea);
                 }
-
             }
             else if (c == '#')
             {
